@@ -60,7 +60,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "create new checkout cart by id.",
+                "description": "create new cart header/id.\u003cbr\u003eExample value : {\"user_id\" : 1,\"cart_item\": {\"supplier_id\":1, \"inv_id\": 1,\"name\": \"meja-1\",\"qty_item\": 1,\"amount_price\": 1000,\"amount_disc\":0}}",
                 "consumes": [
                     "application/json"
                 ],
@@ -70,7 +70,7 @@ var doc = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "create new checkout cart by id.",
+                "summary": "create new cart header/id.",
                 "parameters": [
                     {
                         "description": "Cart Json",
@@ -78,7 +78,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/carts.CheckoutCartSchema"
+                            "$ref": "#/definitions/carts.CreateCartSchema"
                         }
                     }
                 ],
@@ -111,7 +111,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "add new product to cart.",
+                "description": "add new product to cart.\u003cbr\u003eExample value : {\"user_id\" : 1,\"cart_id\": x,\"cart_item\": {\"supplier_id\":2, \"inv_id\": 2,\"name\": \"meja-2\",\"qty_item\": 2,\"amount_price\": 2000,\"amount_disc\":0}}",
                 "consumes": [
                     "application/json"
                 ],
@@ -162,7 +162,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "get value badge cart return value count of item quantity.",
+                "description": "get value badge cart return value count of item quantity.\u003cbr\u003eExample value : {\"user_id\": 1}",
                 "consumes": [
                     "application/json"
                 ],
@@ -172,7 +172,7 @@ var doc = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "get value badge cart.",
+                "summary": "get value badge cart. i'm sorry only run in postman",
                 "parameters": [
                     {
                         "description": "Cart Json",
@@ -205,14 +205,14 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/carts/detail": {
-            "get": {
+        "/api/v1/carts/checkout": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "get value badge cart return value count of item quantity.",
+                "description": "create new checkout cart by id.\u003cbr\u003eExample value : {\"user_id\" : 1,\"cart_id\": x, \"amount_expedition\": 1000}",
                 "consumes": [
                     "application/json"
                 ],
@@ -222,7 +222,58 @@ var doc = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "get value badge cart.",
+                "summary": "create new checkout cart by id.",
+                "parameters": [
+                    {
+                        "description": "Cart Json",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/carts.CheckoutCartSchema"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Cart"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error or Cart is already open status",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/carts/detail": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "get detail data cart.\u003cbr\u003eExample value : {\"user_id\": 1,\"cart_id\": 1}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "get detail data cart. i'm sorry only run in postman",
                 "parameters": [
                     {
                         "description": "Cart Json",
@@ -273,7 +324,7 @@ var doc = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "update qty order product item in cart.",
+                "summary": "update qty order product item in cart. i'm sorry only run in postman",
                 "parameters": [
                     {
                         "description": "Cart Json",
@@ -340,7 +391,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "create product item.",
+                "description": "create new product item.\u003cbr\u003eExample value : {\"name\": \"product name-1\", \"description\": \"product name-1 desc ukuran 1\"}",
                 "consumes": [
                     "application/json"
                 ],
@@ -350,7 +401,7 @@ var doc = `{
                 "tags": [
                     "Inventory"
                 ],
-                "summary": "create product item",
+                "summary": "create new product item",
                 "parameters": [
                     {
                         "description": "Product Json",
@@ -391,7 +442,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "update stock produc item.",
+                "description": "update stock product item.\u003cbr\u003eExample value : {\"inv_id\": 1, \"supplier_id\": 1, \"qty_stock\": 3000}",
                 "consumes": [
                     "application/json"
                 ],
@@ -401,7 +452,7 @@ var doc = `{
                 "tags": [
                     "Inventory"
                 ],
-                "summary": "update stock produc item",
+                "summary": "update stock product item",
                 "parameters": [
                     {
                         "description": "Product Json",

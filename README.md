@@ -1,4 +1,4 @@
-# GO REST API MYSQL BOILERPLATE
+# evermos-online-store
 
 # Packages
 go.mod

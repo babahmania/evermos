@@ -37,7 +37,7 @@ func (a *CartController) listCarts(c *fiber.Ctx) error {
 		return err
 	}
 	pagi.FillDefault()
-	books, _ := a.cartService.ListCarts(pagi)
+	datas, _ := a.cartService.ListCarts(pagi)
 	pagi.Update()
 	c.Links(
 		"http://158.140.191.182:50212/api/v1/carts?page=2", "next",
@@ -45,13 +45,13 @@ func (a *CartController) listCarts(c *fiber.Ctx) error {
 	)
 	return c.Status(200).JSON(fiber.Map{
 		"meta": pagi.GetMeta(),
-		"data": books,
+		"data": datas,
 	})
 }
 
-// getDetailCart func get value badge cart.
-// @Description get value badge cart return value count of item quantity.
-// @Summary get value badge cart.
+// getDetailCart func get detail data cart.
+// @Description get detail data cart.<br>Example value : {"user_id": 1,"cart_id": 1}
+// @Summary get detail data cart. i'm sorry only run in postman
 // @Tags Cart
 // @Accept json
 // @Produce json
@@ -78,9 +78,9 @@ func (a *CartController) getDetailCart(c *fiber.Ctx) error {
 	return c.Status(200).JSON(fiber.Map{"data": cartDetailData})
 }
 
-// getBadgeCart func get value badge cart. i'm sorry only run in postman
-// @Description get value badge cart return value count of item quantity.
-// @Summary get value badge cart.
+// getBadgeCart func get value badge cart.
+// @Description get value badge cart return value count of item quantity.<br>Example value : {"user_id": 1}
+// @Summary get value badge cart. i'm sorry only run in postman
 // @Tags Cart
 // @Accept json
 // @Produce json
@@ -109,8 +109,8 @@ func (a *CartController) getBadgeCart(c *fiber.Ctx) error {
 }
 
 // createCart func create new cart.
-// @Description create new cart header.
-// @Summary create new cart header.
+// @Description create new cart header/id.<br>Example value : {"user_id" : 1,"cart_item": {"supplier_id":1, "inv_id": 1,"name": "meja-1","qty_item": 1,"amount_price": 1000,"amount_disc":0}}
+// @Summary create new cart header/id.
 // @Tags Cart
 // @Accept json
 // @Produce json
@@ -146,7 +146,7 @@ func (a *CartController) createCart(c *fiber.Ctx) error {
 }
 
 // addProductCart func add new product to cart.
-// @Description add new product to cart.
+// @Description add new product to cart.<br>Example value : {"user_id" : 1,"cart_id": x,"cart_item": {"supplier_id":2, "inv_id": 2,"name": "meja-2","qty_item": 2,"amount_price": 2000,"amount_disc":0}}
 // @Summary add new product to cart.
 // @Tags Cart
 // @Accept json
@@ -185,7 +185,7 @@ func (a *CartController) addProductCart(c *fiber.Ctx) error {
 
 // updateProductCart func update qty order product item in cart.
 // @Description update qty order product item in cart.
-// @Summary update qty order product item in cart.
+// @Summary update qty order product item in cart. i'm sorry only run in postman
 // @Tags Cart
 // @Accept json
 // @Produce json
@@ -204,7 +204,7 @@ func (a *CartController) updateProductCart(c *fiber.Ctx) error {
 }
 
 // checkoutCart func create new checkout cart by id.
-// @Description create new checkout cart by id.
+// @Description create new checkout cart by id.<br>Example value : {"user_id" : 1,"cart_id": x, "amount_expedition": 1000}
 // @Summary create new checkout cart by id.
 // @Tags Cart
 // @Accept json
@@ -214,7 +214,7 @@ func (a *CartController) updateProductCart(c *fiber.Ctx) error {
 // @Failure 422 {string} string "Unprocessable Entity"
 // @Failure 500 {string} string "Internal Server Error or Cart is already open status"
 // @Security ApiKeyAuth
-// @Router /api/v1/carts [post]
+// @Router /api/v1/carts/checkout [post]
 func (a *CartController) checkoutCart(c *fiber.Ctx) error {
 	var form CheckoutCartSchema
 	if err := c.BodyParser(&form); err != nil {

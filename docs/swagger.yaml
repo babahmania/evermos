@@ -142,14 +142,16 @@ paths:
     post:
       consumes:
       - application/json
-      description: create new checkout cart by id.
+      description: 'create new cart header/id.<br>Example value : {"user_id" : 1,"cart_item":
+        {"supplier_id":1, "inv_id": 1,"name": "meja-1","qty_item": 1,"amount_price":
+        1000,"amount_disc":0}}'
       parameters:
       - description: Cart Json
         in: body
         name: input
         required: true
         schema:
-          $ref: '#/definitions/carts.CheckoutCartSchema'
+          $ref: '#/definitions/carts.CreateCartSchema'
       produces:
       - application/json
       responses:
@@ -167,14 +169,16 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: create new checkout cart by id.
+      summary: create new cart header/id.
       tags:
       - Cart
   /api/v1/carts/add-product:
     post:
       consumes:
       - application/json
-      description: add new product to cart.
+      description: 'add new product to cart.<br>Example value : {"user_id" : 1,"cart_id":
+        x,"cart_item": {"supplier_id":2, "inv_id": 2,"name": "meja-2","qty_item":
+        2,"amount_price": 2000,"amount_disc":0}}'
       parameters:
       - description: Cart Json
         in: body
@@ -206,7 +210,8 @@ paths:
     get:
       consumes:
       - application/json
-      description: get value badge cart return value count of item quantity.
+      description: 'get value badge cart return value count of item quantity.<br>Example
+        value : {"user_id": 1}'
       parameters:
       - description: Cart Json
         in: body
@@ -230,14 +235,48 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: get value badge cart.
+      summary: get value badge cart. i'm sorry only run in postman
+      tags:
+      - Cart
+  /api/v1/carts/checkout:
+    post:
+      consumes:
+      - application/json
+      description: 'create new checkout cart by id.<br>Example value : {"user_id"
+        : 1,"cart_id": x, "amount_expedition": 1000}'
+      parameters:
+      - description: Cart Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/carts.CheckoutCartSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cart'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Cart is already open status
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: create new checkout cart by id.
       tags:
       - Cart
   /api/v1/carts/detail:
     get:
       consumes:
       - application/json
-      description: get value badge cart return value count of item quantity.
+      description: 'get detail data cart.<br>Example value : {"user_id": 1,"cart_id":
+        1}'
       parameters:
       - description: Cart Json
         in: body
@@ -262,7 +301,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: get value badge cart.
+      summary: get detail data cart. i'm sorry only run in postman
       tags:
       - Cart
   /api/v1/carts/update-product:
@@ -294,7 +333,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: update qty order product item in cart.
+      summary: update qty order product item in cart. i'm sorry only run in postman
       tags:
       - Cart
   /api/v1/products:
@@ -317,7 +356,8 @@ paths:
     post:
       consumes:
       - application/json
-      description: create product item.
+      description: 'create new product item.<br>Example value : {"name": "product
+        name-1", "description": "product name-1 desc ukuran 1"}'
       parameters:
       - description: Product Json
         in: body
@@ -342,14 +382,15 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: create product item
+      summary: create new product item
       tags:
       - Inventory
   /api/v1/products/add-stock:
     post:
       consumes:
       - application/json
-      description: update stock produc item.
+      description: 'update stock product item.<br>Example value : {"inv_id": 1, "supplier_id":
+        1, "qty_stock": 3000}'
       parameters:
       - description: Product Json
         in: body
@@ -374,7 +415,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: update stock produc item
+      summary: update stock product item
       tags:
       - Inventory
   /api/v1/users/login:

@@ -46,8 +46,8 @@ func (a *ProductController) listProducts(c *fiber.Ctx) error {
 }
 
 // createProduct func create item.
-// @Description create product item.
-// @Summary create product item
+// @Description create new product item.<br>Example value : {"name": "product name-1", "description": "product name-1 desc ukuran 1"}
+// @Summary create new product item
 // @Tags Inventory
 // @Accept json
 // @Produce json
@@ -76,9 +76,9 @@ func (a *ProductController) createProduct(c *fiber.Ctx) error {
 	return c.Status(200).JSON(fiber.Map{"data": newProduct})
 }
 
-// addStockProduct func update stock produc item.
-// @Description update stock produc item.
-// @Summary update stock produc item
+// addStockProduct func update stock product item.
+// @Description update stock product item.<br>Example value : {"inv_id": 1, "supplier_id": 1, "qty_stock": 3000}
+// @Summary update stock product item
 // @Tags Inventory
 // @Accept json
 // @Produce json
