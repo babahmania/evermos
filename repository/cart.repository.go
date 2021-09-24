@@ -69,7 +69,7 @@ func (m *CartRepository) GetDetailCart(cart models.CartDetailData) (res models.C
 }
 
 func (m *CartRepository) CreateCart(cart models.Cart, cartDetail models.CartDetail) (res models.Cart, err error) {
-	//trasnsaction mode still error
+	//transaction mode still error
 	//m.Conn.Begin()
 	//m.Conn.Statement.Begin()
 	//m.Conn.Statement.Rollback()
@@ -105,7 +105,7 @@ func (m *CartRepository) CreateCart(cart models.Cart, cartDetail models.CartDeta
 }
 
 func (m *CartRepository) AddProductCart(cart models.Cart, cartDetail models.CartDetail) (res models.Cart, err error) {
-	//trasnsaction mode still error
+	//transaction mode still error
 	//m.Conn.Begin()
 	//m.Conn.Statement.Begin()
 	//m.Conn.Statement.Rollback()
@@ -153,11 +153,67 @@ func (m *CartRepository) AddProductCart(cart models.Cart, cartDetail models.Cart
 }
 
 func (m *CartRepository) UpdateProductCart(cart models.Cart, cartDetail models.CartDetail) (res models.Cart, err error) {
-	return models.Cart{}, errors.New("maaf belum selesai")
+	//transaction mode still error
+	//m.Conn.Begin()
+	//m.Conn.Statement.Begin()
+	//m.Conn.Statement.Rollback()
+	//m.Conn.Statement.Commit()
+	//return models.Cart{}, nil
+	//check if cart is exist
+	oldCart := models.Cart{}
+	m.Conn.First(&oldCart, "user_id=? and cart_id=? and is_active='1'", cart.UserID, cart.CartID)
+	if oldCart.CartID <= 0 {
+		return models.Cart{}, errors.New("cart is not exist")
+	}
+	type totalOldAmount struct {
+		TotalQtyOrder       int
+		TotalAmountPrice    int
+		TotalAmountDiscount int
+		TotalAmount         int
+	}
+	var totalOldAmountData totalOldAmount
+	m.Conn.Table("cart_details").Select("sum(qty_order) as TotalQtyOrder, sum(qty_order*amount_price) as TotalAmountPrice, sum(qty_order*amount_disc) as TotalAmountDiscount, sum(qty_order*amount_price)-sum(qty_order*amount_disc) as TotalAmount").Where("cart_id=? and inv_id<>? and is_active='1'", cart.CartID, cartDetail.InvID).Group("cart_id").Scan(&totalOldAmountData)
+	if totalOldAmountData.TotalAmount <= 0 {
+		return models.Cart{}, errors.New("cart detail this item product is not exist")
+	}
+	cart.QtyItem = uint(totalOldAmountData.TotalQtyOrder) + cartDetail.QtyOrder
+	cart.AmountPrice = uint(totalOldAmountData.TotalAmountPrice) + +(cartDetail.QtyOrder * cartDetail.AmountPrice)
+	cart.AmountDisc = uint(totalOldAmountData.TotalAmountDiscount) + (cartDetail.QtyOrder * cartDetail.AmountDisc)
+	cart.AmountTotal = cart.AmountPrice - cart.AmountDisc
+	/*
+		cart.UpdatedAt = time.Now()
+		var cartDetailNew = models.CartDetail{}
+		cartDetailNew.CartID = cartDetail.CartID
+		cartDetailNew.InvID = cartDetail.InvID
+		cartDetailNew.Name = cartDetail.Name
+		cartDetailNew.SupplierID = cartDetail.SupplierID
+		cartDetailNew.CartNo = cartDetail.CartNo
+		cartDetailNew.QtyOrder = cartDetail.QtyOrder
+		cartDetailNew.AmountDisc = cartDetail.AmountDisc
+		cartDetailNew.AmountPrice = cartDetail.AmountPrice
+		cartDetailNew.CreatedAt = cartDetail.CreatedAt
+	*/
+	cartDetail.UpdatedAt = time.Now()
+	//fmt.Println(cartDetailNew.AmountDisc)
+	//return models.Cart{}, errors.New("lagi debug")
+	result := m.Conn.Table("cart_details").Where("cart_id=? and inv_id=? and is_active='1'", cart.CartID, cartDetail.InvID).Updates(&cartDetail)
+	if result.Error != nil {
+		//m.Conn.RollbackTo("sp1")
+		//m.Conn.Statement.Rollback()
+		return models.Cart{}, result.Error
+	} else {
+		//m.Conn.SavePoint("sp1")
+		result = m.Conn.Model(cart).Where("cart_id=? and user_id=?", cart.CartID, cart.UserID).Updates(&cart)
+		if result.RowsAffected <= 0 {
+			return models.Cart{}, result.Error
+		}
+	}
+	//m.Conn.Commit()
+	return cart, nil
 }
 
 func (m *CartRepository) CheckoutCart(cart models.Sales) (res models.Sales, err error) {
-	//trasnsaction mode still error
+	//transaction mode still error
 	//m.Conn.Begin()
 	//m.Conn.Statement.Begin()
 	//m.Conn.Statement.Rollback()

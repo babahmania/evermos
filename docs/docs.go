@@ -314,7 +314,7 @@ var doc = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "update qty order product item in cart.",
+                "description": "update qty order product item in cart.\u003cbr\u003eExample value : {\"user_id\" : 1,\"cart_id\": x,\"cart_item\": {\"supplier_id\":1, \"inv_id\": 2,\"name\": \"meja-2\",\"qty_item\": 4,\"amount_price\": 2000,\"amount_disc\":0}}",
                 "consumes": [
                     "application/json"
                 ],
@@ -324,7 +324,7 @@ var doc = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "update qty order product item in cart. i'm sorry only run in postman",
+                "summary": "update qty order product item in cart.",
                 "parameters": [
                     {
                         "description": "Cart Json",

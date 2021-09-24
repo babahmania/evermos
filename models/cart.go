@@ -26,7 +26,7 @@ type CartInventory struct {
 	Name        string `json:"name" swaggerignore:"true" binding:"required" validate:"required,min=1"`
 	QtyIem      uint   `json:"qty_item" swaggerignore:"true" binding:"required" validate:"required,min=1"`
 	AmountPrice uint   `json:"amount_price" swaggerignore:"true" binding:"required" validate:"required,min=1"`
-	AmountDisc  uint   `json:"amount_disc" swaggerignore:"true" binding:"required" validate:"min=0"`
+	AmountDisc  uint   `gorm:"column:amount_disc;" json:"amount_disc" swaggerignore:"true" binding:"required" validate:"min=0"`
 }
 
 type CartDetail struct {
@@ -37,7 +37,7 @@ type CartDetail struct {
 	Name        string         `gorm:"type:varchar(255);" json:"name"`
 	QtyOrder    uint           `gorm:"column:qty_order;" json:"qty_order" swaggerignore:"true"`
 	AmountPrice uint           `gorm:"type:int; unsigned; not null; default:0;" json:"amount_price" swaggerignore:"true"`
-	AmountDisc  uint           `gorm:"type:int; unsigned; not null; default:0;" json:"amount_disc" swaggerignore:"true"`
+	AmountDisc  uint           `gorm:"column:amount_disc; type:int; unsigned; not null; default:0;" json:"amount_disc" swaggerignore:"true"`
 	AmountTotal uint           `gorm:"type:int; unsigned; not null; default:0;" json:"amount_total" swaggerignore:"true"`
 	Noted       string         `gorm:"type:varchar(255);" json:"noted"`
 	IsPromo     string         `gorm:"type:char(1); not null; default:'0';" json:"is_promo" swaggerignore:"true"`

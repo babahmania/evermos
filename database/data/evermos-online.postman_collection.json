@@ -246,7 +246,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:50212/api/v1/carts/add-product",
+			"name": "localhost:50212/api/v1/carts/update-product",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -262,7 +262,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 1,\r\n        \"name\": \"meja-1\",\r\n        \"qty_item\": 1,\r\n        \"amount_price\": 1000,\r\n        \"amount_disc\":0\r\n    }\r\n}",
+					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_id\" : 3,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 2,\r\n        \"name\": \"meja-2\",\r\n        \"qty_item\": 4,\r\n        \"amount_price\": 2000,\r\n        \"amount_disc\":500\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -270,7 +270,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:50212/api/v1/carts",
+					"raw": "localhost:50212/api/v1/carts/update-product",
 					"host": [
 						"localhost"
 					],
@@ -278,7 +278,8 @@
 					"path": [
 						"api",
 						"v1",
-						"carts"
+						"carts",
+						"update-product"
 					]
 				},
 				"description": "carts create new cart header"
@@ -346,7 +347,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_id\": 50,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 2,\r\n        \"name\": \"meja-2\",\r\n        \"qty_item\": 2,\r\n        \"amount_price\": 2000,\r\n        \"amount_disc\":0\r\n    }\r\n}",
+					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 1,\r\n        \"name\": \"meja-1\",\r\n        \"qty_item\": 1,\r\n        \"amount_price\": 1000,\r\n        \"amount_disc\":0\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -354,7 +355,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:50212/api/v1/carts/add-product",
+					"raw": "localhost:50212/api/v1/carts",
 					"host": [
 						"localhost"
 					],
@@ -362,8 +363,7 @@
 					"path": [
 						"api",
 						"v1",
-						"carts",
-						"add-product"
+						"carts"
 					]
 				},
 				"description": "carts add new product in cart is exist"
@@ -472,7 +472,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_id\" : 1,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 2,\r\n        \"name\": \"meja-2\",\r\n        \"qty_item\": 2,\r\n        \"amount_price\": 2000,\r\n        \"amount_disc\":500\r\n    }\r\n}",
+					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_id\" : 3,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 2,\r\n        \"name\": \"meja-2\",\r\n        \"qty_item\": 2,\r\n        \"amount_price\": 2000,\r\n        \"amount_disc\":500\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -308,7 +308,9 @@ paths:
     post:
       consumes:
       - application/json
-      description: update qty order product item in cart.
+      description: 'update qty order product item in cart.<br>Example value : {"user_id"
+        : 1,"cart_id": x,"cart_item": {"supplier_id":1, "inv_id": 2,"name": "meja-2","qty_item":
+        4,"amount_price": 2000,"amount_disc":0}}'
       parameters:
       - description: Cart Json
         in: body
@@ -333,7 +335,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: update qty order product item in cart. i'm sorry only run in postman
+      summary: update qty order product item in cart.
       tags:
       - Cart
   /api/v1/products:

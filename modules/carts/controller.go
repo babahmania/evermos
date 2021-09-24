@@ -171,9 +171,6 @@ func (a *CartController) addProductCart(c *fiber.Ctx) error {
 	amountTotal := amountPrice - amountDisc
 
 	cart := models.Cart{CartID: form.CartID, UserID: form.UserID, QtyItem: form.CartItem.QtyIem, AmountPrice: amountPrice, AmountDisc: amountDisc, AmountTotal: amountTotal}
-
-	//cartItem := new(models.CartDetail)
-	//cartItem.InvID = form.CartItem.InvID
 	cartItem := models.CartDetail{CartID: form.CartID, SupplierID: form.CartItem.SupplierID, InvID: form.CartItem.InvID, Name: form.CartItem.Name,
 		QtyOrder: form.CartItem.QtyIem, AmountPrice: form.CartItem.AmountPrice, AmountDisc: form.CartItem.AmountDisc, AmountTotal: amountTotal}
 	newCart, err := a.cartService.AddProductCart(cart, cartItem)
@@ -184,8 +181,8 @@ func (a *CartController) addProductCart(c *fiber.Ctx) error {
 }
 
 // updateProductCart func update qty order product item in cart.
-// @Description update qty order product item in cart.
-// @Summary update qty order product item in cart. i'm sorry only run in postman
+// @Description update qty order product item in cart.<br>Example value : {"user_id" : 1,"cart_id": x,"cart_item": {"supplier_id":1, "inv_id": 2,"name": "meja-2","qty_item": 4,"amount_price": 2000,"amount_disc":0}}
+// @Summary update qty order product item in cart.
 // @Tags Cart
 // @Accept json
 // @Produce json
@@ -200,7 +197,22 @@ func (a *CartController) updateProductCart(c *fiber.Ctx) error {
 	if err := c.BodyParser(&form); err != nil {
 		return err
 	}
-	return nil
+	errors := middlewares.ValidateStruct(form)
+	if len(errors) != 0 {
+		return c.Status(int(errors[0].Status)).JSON(errors)
+	}
+	amountPrice := form.CartItem.QtyIem * form.CartItem.AmountPrice
+	amountDisc := form.CartItem.QtyIem * form.CartItem.AmountDisc
+	amountTotal := amountPrice - amountDisc
+
+	cart := models.Cart{CartID: form.CartID, UserID: form.UserID, QtyItem: form.CartItem.QtyIem, AmountPrice: amountPrice, AmountDisc: amountDisc, AmountTotal: amountTotal}
+	cartItem := models.CartDetail{CartID: form.CartID, SupplierID: form.CartItem.SupplierID, InvID: form.CartItem.InvID, Name: form.CartItem.Name,
+		QtyOrder: form.CartItem.QtyIem, AmountPrice: form.CartItem.AmountPrice, AmountDisc: form.CartItem.AmountDisc, AmountTotal: amountTotal}
+	newCart, err := a.cartService.UpdateProductCart(cart, cartItem)
+	if err != nil {
+		return err
+	}
+	return c.Status(200).JSON(fiber.Map{"data": newCart})
 }
 
 // checkoutCart func create new checkout cart by id.
