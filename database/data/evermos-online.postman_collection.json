@@ -1,0 +1,500 @@
+{
+	"info": {
+		"_postman_id": "01bc0769-2cea-4c01-a5ab-3c9f55407fdb",
+		"name": "evermos-online",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:50212/api/v1/users/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"babah\",\r\n    \"email\": \"babahmania@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/users/register",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"register"
+					]
+				},
+				"description": "users register"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/users/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"babah\",\r\n    \"email\": \"babahmania@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				},
+				"description": "users login"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/users/profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDAwOjM0OjAyLjk0NTc3MyswNzowMCJ9.D60YjibE6w-L0CZiX1h7B0hb5r4QEdbzJUoqExjyfzQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:50212/api/v1/users/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"profile"
+					]
+				},
+				"description": "users profile"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDAwOjQzOjMyLjczMjI3NTUrMDc6MDAifQ.11wq5vA4geUHx6xSYcIcEI0XqulvpqPnEj3bf4tm1_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"meja-1\",\r\n    \"description\": \"meja-1 desc ukuran 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/products",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				},
+				"description": "products create new item product name"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDAwOjQzOjMyLjczMjI3NTUrMDc6MDAifQ.11wq5vA4geUHx6xSYcIcEI0XqulvpqPnEj3bf4tm1_A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:50212/api/v1/products",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				},
+				"description": "product get list all items product"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/products/add-stock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDAyOjM3OjM3LjA5MjI4MzYrMDc6MDAifQ.DRsKCFnfwI6JPbqiNt9srz9oBi34dkcHF01ZLo0UHE8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"inv_id\": 1,\r\n    \"supplier_id\": 1,\r\n    \"qty_stock\": 3000,\r\n    \"amount_price\": 11000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/products/add-stock",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"add-stock"
+					]
+				},
+				"description": "products add stock inventory"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDE1OjUxOjA4LjUyODg5ODU1NCswNzowMCJ9.7IyoJyXD8yce6aGhPVKUNKkihjXEQQ7D6A9j9DCwYYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:50212/api/v1/carts",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts"
+					]
+				},
+				"description": "carts get list all cart"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts/add-product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDE1OjUxOjA4LjUyODg5ODU1NCswNzowMCJ9.7IyoJyXD8yce6aGhPVKUNKkihjXEQQ7D6A9j9DCwYYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 1,\r\n        \"name\": \"meja-1\",\r\n        \"qty_item\": 1,\r\n        \"amount_price\": 1000,\r\n        \"amount_disc\":0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/carts",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts"
+					]
+				},
+				"description": "carts create new cart header"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts/badge",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDIxOjI3OjM5LjY5NjI0MzcwMyswNzowMCJ9.s7rT17gjhkeKlDAURYzav_1FQY-SVDw1DYKI-zJhDD8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/carts/badge",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"badge"
+					]
+				},
+				"description": "carts get badge"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDE1OjUxOjA4LjUyODg5ODU1NCswNzowMCJ9.7IyoJyXD8yce6aGhPVKUNKkihjXEQQ7D6A9j9DCwYYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_id\": 50,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 2,\r\n        \"name\": \"meja-2\",\r\n        \"qty_item\": 2,\r\n        \"amount_price\": 2000,\r\n        \"amount_disc\":0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/carts/add-product",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"add-product"
+					]
+				},
+				"description": "carts add new product in cart is exist"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts/detai",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDE1OjUxOjA4LjUyODg5ODU1NCswNzowMCJ9.7IyoJyXD8yce6aGhPVKUNKkihjXEQQ7D6A9j9DCwYYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 1,\r\n    \"cart_id\": 51\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/carts/detail",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"detail"
+					]
+				},
+				"description": "cart get detail header and item card by id"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts/checkout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDE1OjUxOjA4LjUyODg5ODU1NCswNzowMCJ9.7IyoJyXD8yce6aGhPVKUNKkihjXEQQ7D6A9j9DCwYYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 1,\r\n    \"cart_id\": 1,\r\n    \"amount_expedition\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/carts/checkout",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"checkout"
+					]
+				},
+				"description": "cart checkout"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:50212/api/v1/carts/add-product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhYmFobWFuaWFAZ21haWwuY29tIiwiZXhwIjo4NjQwMDAwMDAwMDAwMCwiaWQiOjEsInRpbWUiOiIyMDIxLTA5LTIzVDE1OjUxOjA4LjUyODg5ODU1NCswNzowMCJ9.7IyoJyXD8yce6aGhPVKUNKkihjXEQQ7D6A9j9DCwYYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\" : 1,\r\n    \"cart_id\" : 1,\r\n    \"cart_item\": {\r\n        \"supplier_id\":1,\r\n        \"inv_id\": 2,\r\n        \"name\": \"meja-2\",\r\n        \"qty_item\": 2,\r\n        \"amount_price\": 2000,\r\n        \"amount_disc\":500\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:50212/api/v1/carts/add-product",
+					"host": [
+						"localhost"
+					],
+					"port": "50212",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"add-product"
+					]
+				},
+				"description": "carts add new products"
+			},
+			"response": []
+		}
+	]
+}

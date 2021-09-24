@@ -1,0 +1,14 @@
+[
+  {
+    "name": "admin",
+    "email": "babahmania@gmail.com",
+    "password": "admin123",
+    "is_active": 1
+  },
+  {
+    "name": "guest",
+    "email": "guest@mailinator.com",
+    "password": "admin123",
+    "is_active": 1
+  }
+]

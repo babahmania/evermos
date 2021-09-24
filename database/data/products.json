@@ -1,0 +1,22 @@
+[
+  {
+    "name": "meja-1",
+    "description": "meja-1 desc ukuran 1"
+  },
+  {
+    "name": "meja-2",
+    "description": "meja-2 desc ukuran 2"
+  },
+  {
+    "name": "meja-3",
+    "description": "meja-3 desc ukuran 3"
+  },
+  {
+    "name": "kursi-1",
+    "description": "kursi-1 desc ukuran 1"
+  },
+  {
+    "name": "kursi-2",
+    "description": "kursi-2 desc ukuran 2"
+  }
+]

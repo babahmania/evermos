@@ -1,0 +1,460 @@
+basePath: /
+definitions:
+  carts.AddProductCartSchema:
+    properties:
+      cart_id:
+        type: integer
+      cart_item:
+        $ref: '#/definitions/models.CartInventory'
+      user_id:
+        type: integer
+    required:
+    - cart_id
+    - cart_item
+    - user_id
+    type: object
+  carts.CheckoutCartSchema:
+    properties:
+      amount_expedition:
+        type: integer
+      cart_id:
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - amount_expedition
+    - cart_id
+    - user_id
+    type: object
+  carts.CreateCartSchema:
+    properties:
+      cart_item:
+        $ref: '#/definitions/models.CartInventory'
+      user_id:
+        type: integer
+    required:
+    - cart_item
+    - user_id
+    type: object
+  carts.GeDataCartSchema:
+    properties:
+      user_id:
+        type: integer
+    required:
+    - user_id
+    type: object
+  carts.GeDataDetailCartSchema:
+    properties:
+      cart_id:
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - cart_id
+    - user_id
+    type: object
+  carts.UpdateProductCartSchema:
+    properties:
+      cart_id:
+        type: integer
+      cart_item:
+        $ref: '#/definitions/models.CartInventory'
+      user_id:
+        type: integer
+    required:
+    - cart_id
+    - cart_item
+    - user_id
+    type: object
+  models.Cart:
+    properties:
+      cart_id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  models.CartInventory:
+    type: object
+  models.Product:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+    type: object
+  models.User:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  products.CreateProductSchema:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  products.UpdateStockProductSchema:
+    properties:
+      inv_id:
+        type: integer
+      qty_stock:
+        type: integer
+      supplier_id:
+        type: integer
+    required:
+    - inv_id
+    - qty_stock
+    - supplier_id
+    type: object
+host: localhost:50212
+info:
+  contact:
+    email: babahmania@gmail.com
+    name: babahmania
+    url: https://github.com/babahmania/evermos
+  description: GO REST API MYSQL FIBER GORM
+  title: evermos-online-store
+  version: "1.0"
+paths:
+  /api/v1/carts:
+    get:
+      consumes:
+      - application/json
+      description: Get all item carts.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cart'
+      security:
+      - ApiKeyAuth: []
+      summary: get all item carts
+      tags:
+      - Cart
+    post:
+      consumes:
+      - application/json
+      description: create new checkout cart by id.
+      parameters:
+      - description: Cart Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/carts.CheckoutCartSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cart'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Cart is already open status
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: create new checkout cart by id.
+      tags:
+      - Cart
+  /api/v1/carts/add-product:
+    post:
+      consumes:
+      - application/json
+      description: add new product to cart.
+      parameters:
+      - description: Cart Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/carts.AddProductCartSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cart'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Duplicate entry
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: add new product to cart.
+      tags:
+      - Cart
+  /api/v1/carts/badge:
+    get:
+      consumes:
+      - application/json
+      description: get value badge cart return value count of item quantity.
+      parameters:
+      - description: Cart Json
+        in: body
+        name: input
+        schema:
+          $ref: '#/definitions/carts.GeDataCartSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: var
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Cart is already open status
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: get value badge cart.
+      tags:
+      - Cart
+  /api/v1/carts/detail:
+    get:
+      consumes:
+      - application/json
+      description: get value badge cart return value count of item quantity.
+      parameters:
+      - description: Cart Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/carts.GeDataDetailCartSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cart'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Cart is already open status
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: get value badge cart.
+      tags:
+      - Cart
+  /api/v1/carts/update-product:
+    post:
+      consumes:
+      - application/json
+      description: update qty order product item in cart.
+      parameters:
+      - description: Cart Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/carts.UpdateProductCartSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cart'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Duplicate entry
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: update qty order product item in cart.
+      tags:
+      - Cart
+  /api/v1/products:
+    get:
+      consumes:
+      - application/json
+      description: Get all item products.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+      security:
+      - ApiKeyAuth: []
+      summary: get all item products
+      tags:
+      - Inventory
+    post:
+      consumes:
+      - application/json
+      description: create product item.
+      parameters:
+      - description: Product Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/products.CreateProductSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Duplicate entry
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: create product item
+      tags:
+      - Inventory
+  /api/v1/products/add-stock:
+    post:
+      consumes:
+      - application/json
+      description: update stock produc item.
+      parameters:
+      - description: Product Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/products.UpdateStockProductSchema'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Duplicate entry
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: update stock produc item
+      tags:
+      - Inventory
+  /api/v1/users/login:
+    post:
+      consumes:
+      - application/json
+      description: 'Auth user and return access and refresh token.<br>Example value
+        : {"email": "babahmania@gmail.com", "password": "admin123"}'
+      parameters:
+      - description: User Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: auth user and return access and refresh token
+      tags:
+      - User
+  /api/v1/users/profile:
+    get:
+      consumes:
+      - application/json
+      description: Get user by given detail user profile.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: get detail user profile
+      tags:
+      - User
+  /api/v1/users/register:
+    post:
+      consumes:
+      - application/json
+      description: 'Create new user register.<br>Example value : {"name": "new user",
+        "email": "username@gmail.com", "password": "password123"}'
+      parameters:
+      - description: User Json
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error or Duplicate entry
+          schema:
+            type: string
+      summary: create new user
+      tags:
+      - User
+securityDefinitions:
+  ApiKeyAuth:
+    in: input value format 'Bearer '+access_token
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
